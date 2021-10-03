@@ -1,14 +1,10 @@
-import collections
 from functools import partial
 from time import time
 
 from TicTacToe import TicTacToe
-from board import Board
 from player import Player
 from rules import check_winner_row, check_winner_column, check_winner_diagonal
 from pynput.keyboard import Key, Listener
-
-from typing import List
 
 
 class TicTacToeGame(TicTacToe):
@@ -85,13 +81,13 @@ class TicTacToeGame(TicTacToe):
             x, y = self.CURSOR_POSITION
             print(f"\033[{self.gridSize * 2}A", end="")  # set cursor position to start
 
-            # posix cursor positons have default value of 1; do not print if no movement needed
+            # cursor movement of 0 still moves it by 1; do not print if no movement needed
             if x != 0:
                 rowpos = x * 2
                 print(f"\033[{rowpos}B", end="")  # set cursor position to row
 
             if y != 0:
-                colpos = y * 4 if y != 0 else 0
+                colpos = y * 4
                 print(f"\r\033[{colpos}C|", end="")  # set cursor position to column
             else:
                 print(f"\r|", end="")
@@ -107,7 +103,7 @@ class TicTacToeGame(TicTacToe):
 # x | x | x
 
 
-gridSize = 4  # the board size x by x
+gridSize = 3  # the board size x by x
 TIMESTEP = 0.25  # re draw every x seconds
 START = time()
 
@@ -128,10 +124,7 @@ def main():
     )
 
     game.start()
-    while True:
-        if not game.running:
-            break
-
+    while game.running:
         if (time() - START) > TIMESTEP:
             START = time()
 

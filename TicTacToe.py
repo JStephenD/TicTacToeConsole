@@ -1,7 +1,6 @@
 from typing import Callable, List
 from player import Player
 from board import TicTacToeBoard
-from enum import Enum, auto
 
 
 class TicTacToe:
@@ -18,11 +17,11 @@ class TicTacToe:
         for rule in rules:
             self.rules.append(rule)
 
-    def place_symbol(self, player: Player, x: int, y: int):
+    def place_symbol(self, player: Player, x: int, y: int) -> bool:
         if result := self.board.set_cell(player, x, y):
             return result
 
-    def check_winner(self):
+    def check_winner(self) -> str:
         for rule in self.rules:
             if winner := rule():
                 return winner

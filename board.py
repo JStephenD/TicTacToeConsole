@@ -9,9 +9,9 @@ class Board:
 
 
 class TicTacToeBoard(Board):
-    def set_cell(self, obj: Player, x: int, y: int):
+    def set_cell(self, obj: Player, x: int, y: int) -> bool:
         if self.grid[x][y] != " ":
-            return
+            return 
         self.grid[x][y] = obj.symbol
         return True
 

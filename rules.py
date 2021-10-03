@@ -1,4 +1,7 @@
-def check_winner_row(grid):
+from typing import List
+
+
+def check_winner_row(grid: List[List[str]]) -> str:
     for row in grid:
         if row[0] == " ":
             continue
@@ -6,7 +9,7 @@ def check_winner_row(grid):
             return row[0]
 
 
-def check_winner_column(grid):
+def check_winner_column(grid: List[List[str]]) -> str:
     gridSize = len(grid)
 
     for y in range(gridSize):
@@ -16,7 +19,7 @@ def check_winner_column(grid):
             return grid[0][y]
 
 
-def check_winner_diagonal(grid):
+def check_winner_diagonal(grid: List[List[str]]) -> str:
     gridSize = len(grid)
     if grid[int(gridSize / 2)][int(gridSize / 2)] == " ":
         return
